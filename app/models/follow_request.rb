@@ -2,7 +2,7 @@
 #
 # Table name: follow_requests
 #
-#  id           :integer          not null, primary key
+#  id           :bigint           not null, primary key
 #  status       :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
