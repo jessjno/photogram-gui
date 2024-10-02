@@ -46,6 +46,30 @@ class PhotosController < ApplicationController
 
     a_new_photo.save
 
-    redirect_to("/photos/" + a_new_photo.id.to_s )
+    next_url = "/photos/" + a_new_photo.id.to_s
+
+    redirect_to(next_url)
+  end
+
+  def update
+    #   Parameters: {"query_image"=>"https://www.78chicago.com/sites/g/files/ujywhv391/files/styles/three_quarter_image_desktop/public/2022-09/03_DPI%20HQ-Aerial%20View_OMA%20and%20Lucian%20R_Website_0.jpg?h=c44fcfa1&itok=XznrTO-31", "query_caption"=>"seven eight update", "path_id"=>"952"}
+    the_id = params.fetch("path_id")
+
+    matching_photos = Photo.where({ :id => the_id})
+    
+    the_photo = matching_photos.at(0)
+    
+    input_image = params.fetch("query_image")
+    input_caption = params.fetch("query_caption")
+    
+    the_photo.image = input_image
+    the_photo.caption = input_caption
+
+    the_photo.save
+    
+    next_url = "/photos/" + the_photo.id.to_s
+
+    redirect_to(next_url)
+
   end
 end
